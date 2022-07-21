@@ -108,6 +108,12 @@ resource "aws_route_table" "private_subnet_sg" {
   provider = aws.sg
 
   vpc_id = aws_vpc.sg.id
+  
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_nat_gateway.natgw_sg.id
+  }
+
 
   tags = {
     Name = "Private RT"
